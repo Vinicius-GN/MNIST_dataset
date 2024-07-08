@@ -8,19 +8,19 @@ import math
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
 final_image = x_train 
 
-# Flatten the images from 28x28 to a 1D array of 784 elements
-x_train = x_train.reshape((x_train.shape[0], -1)).astype('float32') / 255.0
+# Flatten the images from 28x28 to a 1D array of 784 elements (Normalization)
+x_train = x_train.reshape((x_train.shape[0], -1)).astype('float32') / 255.0 #Pixels are in the range of 0-255, so we normalize them to 0-1
 x_test = x_test.reshape((x_test.shape[0], -1)).astype('float32') / 255.0
 
 # Convert labels to one-hot encoding
-y_train = tf.keras.utils.to_categorical(y_train, num_classes=10)
-y_test = tf.keras.utils.to_categorical(y_test, num_classes=10)
+y_train = tf.keras.utils.to_categorical(y_train, num_classes=10) # One hot encoding means that we have a vector of 10 elements and the value of each index corresponds if thats the number or not
+y_test = tf.keras.utils.to_categorical(y_test, num_classes=10) #Thats the ground truth for the output
 
 # Defining constants
 input_size = 784  # 28x28 pixels
 no_classes = 10
 batch_size = 100  # Batches of training data
-total_batches = 1
+total_batches = 1  # Total number of epochs to train the model initially
 
 # Optimization Step
 optimizer = tf.keras.optimizers.SGD(learning_rate=0.5)
@@ -36,8 +36,11 @@ def create_model():
 
 #Create the model
 model = create_model()
+
+# Define the loss function
 loss_object = tf.keras.losses.CategoricalCrossentropy()
 
+# Create a dataset from the training data
 train_dataset = tf.data.Dataset.from_tensor_slices((x_train, y_train)).shuffle(buffer_size=10000).batch(batch_size)
 
 # Create a summary writer for training and testing
@@ -73,6 +76,10 @@ test_summary_writer.close()
 
 while (True):
     index = int(input("Digite um valor entre 0 e 59999:"))
+    #Tratamento de erro para valores fora do range
+    if index < 0 or index > 59999:
+        print("Valor fora do range")
+        quit()
     img = final_image[index]
     img_flat = img.flatten() 
     plt.imshow(img_flat.reshape(28,28), cmap="Greys")
