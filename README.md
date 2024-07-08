@@ -5,8 +5,8 @@
 This repository contains an introductory project focused on developing and training neural networks. We use TensorFlow, a powerful library for machine learning, to build and train a neural network model. The model consists of two dense layers and is trained using the famous MNIST dataset, which comprises 28x28 pixel images of handwritten digits.
 
 <p align="center">
-  <img src="Results/Figure_1.png" alt="Gráfico de Velocidade 1" width="45%" />
-  <img src="Results/Figure_2.png" alt="Gráfico de Velocidade 2" width="45%" />
+  <img src="Results/Figure_1.png" alt="Gráfico de Velocidade 1" width="35%" />
+  <img src="Results/Figure_2.png" alt="Gráfico de Velocidade 2" width="35%" />
 </p>
 
 ## Project Objective
