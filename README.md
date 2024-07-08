@@ -37,4 +37,4 @@ To run this project, clone this repository and execute the main script:
 ```bash
 git clone [URL of this repository]
 cd [repository folder]
-python main.py
+python MNIST.py
